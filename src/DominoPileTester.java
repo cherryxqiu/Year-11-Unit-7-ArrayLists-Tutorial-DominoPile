@@ -69,11 +69,11 @@ public class DominoPileTester {
      *  result that shuffles the tiles into the same order as they were originally.
      *  This would cause this test to fail, despite the implementation of shuffleOptionOne being correct.
      */
-   @Test
-   public void testShuffle() {
+    @Test
+    public void testShuffleOptionOne() {
         setUp();
         dominoPile.newStack6();
-        dominoPile.shuffle();
+        dominoPile.shuffleOptionOne();
         int top = 0;
         int bottom = 0;
         boolean allInSameOrder = true;
@@ -87,8 +87,32 @@ public class DominoPileTester {
 
             bottom++;
         }
-       assertTrue("Ensure that your shuffleOption1 method in the DominoPile class has been implemented correctly!", !allInSameOrder);
-   }
+        assertTrue("Ensure that your shuffleOption1 method in the DominoPile class has been implemented correctly!", !allInSameOrder);
+    }
 
-   
+    /** Note that there is a very small probability that this test fails on a correct implementation.
+     *  This is because there is a very small chance that the call to shuffleOptionOne produces a
+     *  result that shuffles the tiles into the same order as they were originally.
+     *  This would cause this test to fail, despite the implementation of shuffleOptionOne being correct.
+     */
+    @Test
+    public void testShuffleOptionTwo() {
+        setUp();
+        dominoPile.newStack6();
+        dominoPile.shuffleOptionTwo();
+        int top = 0;
+        int bottom = 0;
+        boolean allInSameOrder = true;
+        for (int i = 0; i < dominoPile.getPile().size(); i++) {
+            if (!(dominoPile.getPile().get(i).getTop() == top && dominoPile.getPile().get(i).getBottom() == bottom)) allInSameOrder = false;
+
+            if (bottom == 6) {
+                top++;
+                bottom = top;
+            }
+
+            bottom++;
+        }
+        assertTrue("Ensure that your shuffleOption1 method in the DominoPile class has been implemented correctly!", !allInSameOrder);
+    }
 }
