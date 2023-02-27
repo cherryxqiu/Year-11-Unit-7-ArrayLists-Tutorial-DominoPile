@@ -1,72 +1,96 @@
 public class Domino {
+
     private int top;
+
     private int bottom;
 
-    public Domino (){
+    public Domino(){
+
         top = 0;
+
         bottom = 0;
     }
+    public Domino(int top, int bottom){
 
-    public Domino (int t, int b){
-        top = t;
-        bottom = b;
+        this.top = top;
+
+        this.bottom = bottom;
     }
 
-    public int getTop(){return top;}
-    public int getBottom(){return bottom;}
+    public int getTop(){
+        return top;
+    }
 
-    public void setTop (int top){this.top = top;}
-    public void setBottom (int bottom){this.bottom = bottom;}
+    public int getBottom(){
+        return bottom;
+    }
 
-    public String toString(){return top + "/" + bottom;}
-    public String flip(){return bottom + "/" + top;}
+    public void setTop(int top){
+        this.top = top;
+    }
+
+    public void setBottom(int bottom){
+        this.bottom = bottom;
+    }
+
+    public String toString(){
+        return top+"/"+bottom;
+    }
+
+    public void flip(){
+
+        int storage = bottom;
+
+        bottom = top;
+
+        top = storage;
+    }
     public void settle(){
-        if(bottom < top){
+        if (bottom < top){
             flip();
         }
     }
+
     public int compareTo(Domino other){
         other.settle();
-        settle();
-        if(getTop() < other.getTop()){
+        this.settle();
+        if(this.top < other.top){
             return -1;
         }
-        else if(getTop() > other.getTop()){
+        else if(this.top > other.top){
             return 1;
         }
-        else if(getTop()==other.getTop()){
-            if(getBottom()<other.getBottom()){
+        else{
+            if(this.bottom < other.bottom){
                 return -1;
             }
-            else if(getBottom()>other.getBottom()){
-                return 1;
+            else if(this.bottom > other.bottom){
+                return -1;
             }
-            else if(getBottom()==other.getBottom()){
+            else {
                 return 0;
             }
         }
-        return 0;
     }
 
     public int compareToWeight(Domino other){
-        int thisD = (getTop() + getBottom())/2;
-        int otherD = (other.getTop() + other.getBottom())/2;
-        if(thisD < otherD){
+        int thisTotal = this.top + this.bottom;
+        int otherTotal = other.top + other.bottom;
+        if(thisTotal < otherTotal){
             return -1;
         }
-        if(thisD > otherD){
+        else if(thisTotal < otherTotal){
             return 1;
         }
-        if(thisD == otherD){
+        else{
             return 0;
         }
-        return 0;
     }
 
     public boolean canConnect(Domino other){
-        if(getTop() == other.getTop() || getTop() == other.getBottom() || getBottom() == other.getTop() || getBottom() == other.getBottom()){
+        if(this.top==other.top||this.top==other.bottom||this.bottom==other.top||this.bottom==other.bottom) {
             return true;
         }
-        else {return false;}
+        else return false;
     }
 }

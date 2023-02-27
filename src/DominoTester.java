@@ -1,5 +1,3 @@
-
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -157,7 +155,7 @@ public class DominoTester {
         setUp();
         domino.setTop(4);
         domino.setBottom(4);
-        assertEquals("Ensure that your compareTo method in the Domino class has been implemented correctly!", 0, domino.compareTo(otherDomino));
+        assertEquals("Ensure that your compareTo method in the Domino class has been implemented correctly!", 0, domino.compareToWeight(otherDomino));
         tearDown();
     }
 
@@ -166,7 +164,7 @@ public class DominoTester {
         setUp();
         domino.setTop(4);
         domino.setBottom(2);
-        assertEquals("Ensure that your compareTo method in the Domino class has been implemented correctly!", -1, domino.compareToWeight(otherDomino));
+        assertEquals("Ensure that your compareTo method in the Domino class has been implemented correctly!", -1, domino.compareTo(otherDomino));
         tearDown();
     }
 
